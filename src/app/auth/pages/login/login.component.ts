@@ -10,7 +10,7 @@ import {AuthService} from "../../services/auth.service";
 export class LoginComponent {
 
   constructor(private router: Router,
-  private authService: AuthService) {
+              private authService: AuthService) {
   }
 
   login() {
@@ -21,11 +21,16 @@ export class LoginComponent {
       .subscribe(resp => {
         console.log(resp);
 
-        if(resp.id){
+        if (resp.id) {
           this.router.navigate(['./heroes']);
         }
       })
     //this.router.navigate(['./heroes']);
+  }
+
+  ingresarSinLogin() {
+    this.authService.logout();
+    this.router.navigate(['./heroes'])
   }
 
   logout() {
